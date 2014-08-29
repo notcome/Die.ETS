@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1= title
+  a(href="create") Create List
+  button(onclick="loadList();") Load List
+  p(id="word")
+  button(onclick="next();") Show next
