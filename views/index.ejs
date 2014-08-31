@@ -9,12 +9,24 @@
 		<br>
 		<h2> Get Fired! </h2>
 		<button ng-click="main.loadList()"> Load a new list </button>
-		<p> {{main.currentWord}} </p>
-		<button ng-click="main.goNext()"> Show the next word </button>
-		<ul id="list">
-			<li ng-repeat="word in main.words"> {{word}} </li>
-		</ul>
+		<div class="flashcard">
+			<section class="info-panel">
+				<h3>[Main Info]</h3>
+			</section>
+			<section class="operation-panel">
+				<button ng-click="main.goNext()">Next Word</button>
+				<button ng-click="main.iForgot()">I forgot the spelling</button>
+				<button ng-click="main.checkSpelling()">Check Spelling</button>
+				<button ng-click="main.sound()">Sound</button>
+				<input type="text" ng-model="main.spelling">
+			</section>
+		</div>
+		<div class="test-area">
+		<p> Test Info: {{main.testInfo}} </p>
+		<p> currentWord: {{main.currentWord}} </p>
+		</div>
 		<hr>
+		</p>
 		<a href="create"> Not having a list yet? Create one! </a>
 	</body>
 </html>
