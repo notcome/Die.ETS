@@ -1,0 +1,20 @@
+<html ng-app='index'>
+	<head>
+		<script src="js/angular.js"></script>
+		<script src="js/index.js"></script>
+		<script src="js/jquery-2.1.1.min.js"></script>
+	</head>
+	<body ng-controller="MainController as main">
+		<h1> Die.ETS! </h1>
+		<br>
+		<h2> Get Fired! </h2>
+		<button ng-click="main.loadList()"> Load a new list </button>
+		<p> {{main.currentWord}} </p>
+		<button ng-click="main.goNext()"> Show the next word </button>
+		<ul id="list">
+			<li ng-repeat="word in main.words"> {{word}} </li>
+		</ul>
+		<hr>
+		<a href="create"> Not having a list yet? Create one! </a>
+	</body>
+</html>

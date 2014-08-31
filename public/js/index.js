@@ -1,24 +1,18 @@
-var list = [];
-var pos = 0;
+(function(){
+	var app = angular.module('index', []);
+  app.controller('MainController', function($scope, $http){
+		this.count = 0;
+		this.currentWord = 'Placeholder';
+		$scope.words = [];
+		this.loadList = function(){
+		  $http.get('/words').success(function (data) {
+			 $scope.words.push(data.words[0].word);
+			});
+		}
 
-function loadList(){
-	$.get("getWords", function(data) {
-		list = select(data);
-		$('#word').html(list);
+		this.goNext = function(){
+			this.count = (this.count + 1) % $scope.words.length;
+			this.currentWord = $scope.words[this.count];
+		}
 	});
-}
-
-function select(data){
-	return data.slice(0, -1).split(',');
-}
-
-function next(){
-	if(pos < list.length){
-		$('#word').html(list[pos]);
-		var msg = new SpeechSynthesisUtterance(list[pos]);
-		window.speechSynthesis.speak(msg);
-		pos++;
-	}
-	else 
-		$('#word').html("No more sir");
-}
+})();

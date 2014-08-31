@@ -1,0 +1,22 @@
+<html ng-app="create">
+	<head>
+		<script src="js/angular.js"></script>
+		<script src="js/create.js"></script>
+	</head>
+	<body ng-controller="MainController as main">
+		<h3> Input area, click to add word </h3>
+		<input type="text"  ng-model="main.word">
+		<button type="button" ng-click="main.addWord()"> Add a word </button>
+		<p>
+		    <h4> Preview: {{main.word}} </h4>
+			<h3> List: </h3>
+			<ul>
+				<li ng-repeat="word in main.words"> {{word}} </li>
+			</ul>
+		</p>
+		<form type="form" method="POST" action="/words">
+			<input type="submit" name="submit" value="Submit the list">
+			<input type="text" name="data" ng-model="main.list" hidden>
+		</form>
+	</body>
+</html>

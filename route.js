@@ -5,11 +5,11 @@ var db = level('./data');
 
 /* GET pages */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Index' });
+  res.render('index');
 });
 
 router.get('/create', function(req, res) {
-  res.render('create', { title: 'Create List' });
+  res.render('create');
 });
 
 /* API */
@@ -52,7 +52,7 @@ router.route('/words')
 		});
 		res.json({msg: "Complete, Sir!"});
 	})
-	.get('/words', function(req, res){
+	.get(function(req, res){
 		var words = [];
 		db.createReadStream()
 		  	.on('data', function (data) {
@@ -65,7 +65,8 @@ router.route('/words')
 			    console.log('Stream closed')
 		  	})
 		  	.on('end', function () {
-	  			res.json(words);
+	  		  res.json({words : words});
+			  console.log('Sent');
 		  	});
 	})
 
